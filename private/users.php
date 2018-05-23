@@ -1,5 +1,32 @@
 <!DOCTYPE html>
 <?php require_once dirname(__FILE__).'/../framework/helpers.php'; 
+
+if(!empty($_POST)){ 
+    if (!empty($_POST['action'])){
+        switch ($_POST['action']){
+            case "insert":
+                if ( !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['nickname']) ) {
+                    db_query("INSERT INTO Users (email, password, nickname) VALUES ('".$_POST['email']."','".$_POST['password']."','".$_POST['nickname']."')");
+                }  
+            break;
+            case "update";
+                if ( !empty($_POST['id'])){
+                    if ( !empty($_POST['email']) && !empty($_POST['nickname'])){
+                        db_query("UPDATE Users SET email = '".$_POST['email']."', nickname = '".$_POST['nickname']."' WHERE ID=".$_POST['id']);
+                    }
+                }
+            break;  
+            case "delete";
+
+              if ( !empty($_POST['id'])){
+                    db_query("DELETE FROM Users WHERE ID=".$_POST['id']);
+                }
+            break;
+        }
+    } 
+} 
+
+
 $users = db_select("SELECT * FROM Users");
 ?>
 <html lang="en">

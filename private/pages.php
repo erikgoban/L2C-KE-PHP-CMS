@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <?php require_once dirname(__FILE__).'/../framework/helpers.php'; 
+
+if(!empty($_POST)){ 
+    if (!empty($_POST['action'])){
+        switch ($_POST['action']){
+            case "insert":
+                if ( !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['menu_label']) ) {
+                    db_query("INSERT INTO Pages (title, content, menu_label) VALUES ('".$_POST['title']."','".$_POST['content']."','".$_POST['menu_label']."','".$_POST['menu_order']."' )");
+                }  
+            break;
+            case "update";
+                if ( !empty($_POST['id'])){
+                    if ( !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['menu_label']) && !empty($_POST['menu_order'])){
+                        db_query("UPDATE Pages SET title = '".$_POST['title']."', content = '".$_POST['content']."', menu_label = '".$_POST['menu_label']."', menu_order = '".$_POST['menu_order']."' WHERE ID=".$_POST['id']);
+                    }
+                }
+            break;  
+            case "delete";
+
+              if ( !empty($_POST['id'])){
+                    db_query("DELETE FROM Pages WHERE ID=".$_POST['id']);
+                }
+            break;
+        }
+    } 
+} 
+
+
+
 $pages = db_select("SELECT * FROM Pages");
 ?>
 <html lang="en">
@@ -19,7 +47,7 @@ $pages = db_select("SELECT * FROM Pages");
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-12 col-md-12 main">
-					<h1 class="page-header">Users</h1>
+					<h1 class="page-header">Pages</h1>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
