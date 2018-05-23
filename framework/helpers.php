@@ -1,6 +1,6 @@
 <?php
 function db_connect(){
-    require_once dirname(__FILE__).'/../config/database.php';
+    include dirname(__FILE__).'/../config/database.php';
     return mysqli_connect($database["host"], $database["user"], $database["pass"], $database["name"], $database["port"]);
 }
 
@@ -18,6 +18,10 @@ function db_select($sql_string){
         //array_push($data, $object);
     }
     return $data;
+}
+function db_single($sql_string){
+    $result = db_query($sql_string);
+    return mysqli_fetch_object($result);
 }
 
 ?>

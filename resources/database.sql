@@ -22,4 +22,4 @@ FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 
 INSERT INTO Users (ID, email, password, nickname) VALUES (1, 'jozko@mrkvicka.sk', 12345, jozkomrkvicka)
 
-INSERT INTO Pages (title, content, user_id, menu_label, menu_order) VALUES ("Welcome", "lorem ipsum", 1, "welcome", 0);
+INSERT INTO Pages (title, content, user_id, menu_label, menu_order) VALUES ("Welcomeeebjb", "lorem ipsum", 1, "welcome", 0);
