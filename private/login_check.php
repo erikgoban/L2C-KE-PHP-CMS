@@ -7,9 +7,13 @@ if(!empty($_POST)){
         $user = db_single("SELECT * FROM Users WHERE email='".$_POST['email']."'");
         if(!empty($user)){
             if ($user->password==$_POST['password']){
-                echo "login sucess <3";
+                // echo "login sucess <3";
+                session_start();
+                $_SESSION['email']= $_POST['email'];
+                header("Location: index.php");
             } else { 
                 echo "nespravne heslo";
+                
             } 
         } else { echo "neexistujuci pouzivatel";
                 

@@ -1,6 +1,8 @@
 <?php 
 require_once dirname(__FILE__).'/../framework/helpers.php';
 
+require_once dirname(__FILE__).'/../framework/loggedin.php';
+
 if(!empty($_REQUEST['id'])){
     
     $user = db_single("SELECT * FROM Pages WHERE ID='".$_REQUEST['id']."'");
